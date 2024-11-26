@@ -29,7 +29,7 @@ configure_mosquitto() {
     city="Montbeliard"
     organization="IUT"
     common_name_CA=""
-    common_name_mosquitto="192.168.1.50"
+    common_name_mosquitto="192.168.1.5"
 
     # Vérifier si les certificats existent déjà
     if [ ! -f "/etc/mosquitto/certs/ca.crt" ]; then
@@ -57,25 +57,26 @@ configure_mosquitto() {
     # Chemin du fichier de mots de passe
     password_file="/etc/mosquitto/auth.txt"
 
+    # Ajout de l'utilisateur par défaut
+    default_username="Solgaleo"
+    default_password="Lunala"
+
     # Vérifier si le fichier de mots de passe existe déjà
     if [ -f "$password_file" ]; then
         printf "Le fichier de mots de passe existe déjà.\n"
     else
         printf "Le fichier de mots de passe n'existe pas. Création du fichier...\n"
-        mosquitto_passwd -c "$password_file" "$default_username"
+        mosquitto_passwd -b "$password_file" "$default_username" "$default_password"
         chmod 600 "$password_file"
     fi
 
-    # Ajout de l'utilisateur par défaut
-    default_username="GRP-1-IOM"
-    default_password="Porygon-Z#1"
 
     # Vérifier si l'utilisateur par défaut existe déjà dans le fichier de mots de passe
     if grep -q "^$default_username:" "$password_file"; then
         printf "L'utilisateur par défaut existe déjà dans le fichier de mots de passe.\n"
     else
         printf "Ajout de l'utilisateur par défaut dans le fichier de mots de passe...\n"
-        echo "$default_username:$(mosquitto_passwd -p <<< "$default_password")" >> "$password_file"
+        mosquitto_passwd -b $password_file $default_username $default_password
         printf "Utilisateur par défaut ajouté avec succès.\n"
     fi
 
