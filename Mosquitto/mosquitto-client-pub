@@ -10,4 +10,4 @@ topic=$1
 message=$2
 dir=/etc/mosquitto/certs
 
-mosquitto_pub -h 192.168.50.25 -p 8883 -t "$topic" -m "$message" --cafile ca.crt --cert $3.crt --key $3.key -d
+mosquitto_pub -h 192.168.1.5 -p 8883 -u Solgaleo -P Lunala -t "$topic" -m "$message" --cafile $dir/ca.crt --insecure -d
