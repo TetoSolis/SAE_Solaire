@@ -371,7 +371,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 760,
-        "y": 200,
+        "y": 220,
         "wires": []
     },
     {
@@ -577,7 +577,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1280,
-        "y": 320,
+        "y": 360,
         "wires": []
     },
     {
@@ -656,7 +656,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 110,
-        "y": 360,
+        "y": 380,
         "wires": [
             [
                 "a2b9cf56ab67fc31"
@@ -914,7 +914,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1250,
+        "x": 1230,
         "y": 720,
         "wires": []
     },
@@ -973,6 +973,867 @@
         "wires": []
     },
     {
+        "id": "c5fed098dd4ab643",
+        "type": "mqtt in",
+        "z": "2217c56c.71908a",
+        "name": "",
+        "topic": "Shelly-Solgaleo/status/switch:1",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "2b7cd95103905f99",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 150,
+        "y": 960,
+        "wires": [
+            [
+                "b3fbb3af79fb27e7",
+                "de696c576a4d01fd",
+                "2f79ec108c921fa2"
+            ]
+        ]
+    },
+    {
+        "id": "b3fbb3af79fb27e7",
+        "type": "change",
+        "z": "2217c56c.71908a",
+        "name": "Shelly Port 1 Voltage",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.voltage",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 420,
+        "y": 960,
+        "wires": [
+            [
+                "cf895fe5084c4846"
+            ]
+        ]
+    },
+    {
+        "id": "cf895fe5084c4846",
+        "type": "mqtt out",
+        "z": "2217c56c.71908a",
+        "name": "",
+        "topic": "/elec/shelly/port1/voltage",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "2b7cd95103905f99",
+        "x": 670,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "cd39f65f02ac8160",
+        "type": "mqtt in",
+        "z": "2217c56c.71908a",
+        "name": "",
+        "topic": "/elec/shelly/port1/voltage",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "2b7cd95103905f99",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 910,
+        "y": 960,
+        "wires": [
+            [
+                "bb8566f5d6fd6287",
+                "346663cc2a1650d8"
+            ]
+        ]
+    },
+    {
+        "id": "bb8566f5d6fd6287",
+        "type": "influxdb out",
+        "z": "2217c56c.71908a",
+        "influxdb": "e74c84989c7ea029",
+        "name": "voltage passthrough",
+        "measurement": "voltage",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "solgaleo",
+        "bucket": "shelly port 1",
+        "x": 1180,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "346663cc2a1650d8",
+        "type": "debug",
+        "z": "2217c56c.71908a",
+        "name": "Voltage Count",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1380,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "7ca94413e2b4f9c6",
+        "type": "mqtt in",
+        "z": "2217c56c.71908a",
+        "name": "",
+        "topic": "Shelly-Solgaleo/status/switch:0",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "2b7cd95103905f99",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 150,
+        "y": 780,
+        "wires": [
+            [
+                "b4d83588851484eb",
+                "8a9f2f5265d66070",
+                "5bbb8bfc9310e429",
+                "dae7188374c13724"
+            ]
+        ]
+    },
+    {
+        "id": "b4d83588851484eb",
+        "type": "change",
+        "z": "2217c56c.71908a",
+        "name": "Shelly Port 0 Voltage",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.voltage",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 420,
+        "y": 780,
+        "wires": [
+            [
+                "2aaa9c4fdcf5f560"
+            ]
+        ]
+    },
+    {
+        "id": "2aaa9c4fdcf5f560",
+        "type": "mqtt out",
+        "z": "2217c56c.71908a",
+        "name": "",
+        "topic": "/elec/shelly/port0/voltage",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "2b7cd95103905f99",
+        "x": 670,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "c3f81878fa353f34",
+        "type": "mqtt in",
+        "z": "2217c56c.71908a",
+        "name": "",
+        "topic": "/elec/shelly/port0/voltage",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "2b7cd95103905f99",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 910,
+        "y": 780,
+        "wires": [
+            [
+                "b61fed7553f96702",
+                "395671acb32e1f24"
+            ]
+        ]
+    },
+    {
+        "id": "b61fed7553f96702",
+        "type": "influxdb out",
+        "z": "2217c56c.71908a",
+        "influxdb": "e74c84989c7ea029",
+        "name": "voltage passthrough",
+        "measurement": "voltage",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "solgaleo",
+        "bucket": "shelly port 0",
+        "x": 1180,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "395671acb32e1f24",
+        "type": "debug",
+        "z": "2217c56c.71908a",
+        "name": "Voltage Count",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1380,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "ddc21e8b6dca6f48",
+        "type": "comment",
+        "z": "2217c56c.71908a",
+        "name": "Shelly",
+        "info": "",
+        "x": 70,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "63e17f4171c0763b",
+        "type": "comment",
+        "z": "2217c56c.71908a",
+        "name": "Meross Plug",
+        "info": "",
+        "x": 90,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "c287ce51df2f67e9",
+        "type": "comment",
+        "z": "2217c56c.71908a",
+        "name": "Time Check",
+        "info": "",
+        "x": 90,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "4ca34bbe8cbb596f",
+        "type": "comment",
+        "z": "2217c56c.71908a",
+        "name": "Initialisation",
+        "info": "",
+        "x": 90,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "de696c576a4d01fd",
+        "type": "change",
+        "z": "2217c56c.71908a",
+        "name": "Shelly Port 1 Current",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.current",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 420,
+        "y": 1020,
+        "wires": [
+            [
+                "71df9972604fe1fa"
+            ]
+        ]
+    },
+    {
+        "id": "8a9f2f5265d66070",
+        "type": "change",
+        "z": "2217c56c.71908a",
+        "name": "Shelly Port 0 Current",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.current",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 420,
+        "y": 840,
+        "wires": [
+            [
+                "033bb1da9483eeaa"
+            ]
+        ]
+    },
+    {
+        "id": "033bb1da9483eeaa",
+        "type": "mqtt out",
+        "z": "2217c56c.71908a",
+        "name": "",
+        "topic": "/elec/shelly/port0/current",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "2b7cd95103905f99",
+        "x": 670,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "71df9972604fe1fa",
+        "type": "mqtt out",
+        "z": "2217c56c.71908a",
+        "name": "",
+        "topic": "/elec/shelly/port1/current",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "2b7cd95103905f99",
+        "x": 670,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "e1a2ad382f47955e",
+        "type": "mqtt in",
+        "z": "2217c56c.71908a",
+        "name": "",
+        "topic": "/elec/shelly/port0/current",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "2b7cd95103905f99",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 910,
+        "y": 840,
+        "wires": [
+            [
+                "084f2e49b259af77",
+                "947f129ef84a5b87"
+            ]
+        ]
+    },
+    {
+        "id": "b2e9cef0a8f58de4",
+        "type": "mqtt in",
+        "z": "2217c56c.71908a",
+        "name": "",
+        "topic": "/elec/shelly/port1/current",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "2b7cd95103905f99",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 910,
+        "y": 1020,
+        "wires": [
+            [
+                "dda71ad5d91dfa07",
+                "4baaaf58825e1333"
+            ]
+        ]
+    },
+    {
+        "id": "084f2e49b259af77",
+        "type": "influxdb out",
+        "z": "2217c56c.71908a",
+        "influxdb": "e74c84989c7ea029",
+        "name": "current passthrough",
+        "measurement": "current",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "solgaleo",
+        "bucket": "shelly port 0",
+        "x": 1180,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "947f129ef84a5b87",
+        "type": "debug",
+        "z": "2217c56c.71908a",
+        "name": "Current Count",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1380,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "dda71ad5d91dfa07",
+        "type": "influxdb out",
+        "z": "2217c56c.71908a",
+        "influxdb": "e74c84989c7ea029",
+        "name": "current passthrough",
+        "measurement": "current",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "solgaleo",
+        "bucket": "shelly port 1",
+        "x": 1180,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "4baaaf58825e1333",
+        "type": "debug",
+        "z": "2217c56c.71908a",
+        "name": "Current Count",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1380,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "2f79ec108c921fa2",
+        "type": "change",
+        "z": "2217c56c.71908a",
+        "name": "Shelly Port 1 Wph",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.aenergy.total",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 410,
+        "y": 1080,
+        "wires": [
+            [
+                "8925f1cc193d8c1e"
+            ]
+        ]
+    },
+    {
+        "id": "8925f1cc193d8c1e",
+        "type": "mqtt out",
+        "z": "2217c56c.71908a",
+        "name": "",
+        "topic": "/elec/shelly/port1/Wph",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "2b7cd95103905f99",
+        "x": 660,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "8b69be82d67b0f35",
+        "type": "mqtt in",
+        "z": "2217c56c.71908a",
+        "name": "",
+        "topic": "/elec/shelly/port1/Wph",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "2b7cd95103905f99",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 900,
+        "y": 1080,
+        "wires": [
+            [
+                "a44ead3a32bd3455",
+                "df3caac0ea88e6eb"
+            ]
+        ]
+    },
+    {
+        "id": "a44ead3a32bd3455",
+        "type": "influxdb out",
+        "z": "2217c56c.71908a",
+        "influxdb": "e74c84989c7ea029",
+        "name": "Wph passthrough",
+        "measurement": "Wph",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "solgaleo",
+        "bucket": "shelly port 1",
+        "x": 1170,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "df3caac0ea88e6eb",
+        "type": "debug",
+        "z": "2217c56c.71908a",
+        "name": "Wph Count",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1370,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "5bbb8bfc9310e429",
+        "type": "change",
+        "z": "2217c56c.71908a",
+        "name": "Shelly Port 0 Wph",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.aenergy.total",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 410,
+        "y": 900,
+        "wires": [
+            [
+                "883a4d7624cd6688"
+            ]
+        ]
+    },
+    {
+        "id": "883a4d7624cd6688",
+        "type": "mqtt out",
+        "z": "2217c56c.71908a",
+        "name": "",
+        "topic": "/elec/shelly/port0/Wph",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "2b7cd95103905f99",
+        "x": 660,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "cbfe24f4a1db4efe",
+        "type": "mqtt in",
+        "z": "2217c56c.71908a",
+        "name": "",
+        "topic": "/elec/shelly/port0/Wph",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "2b7cd95103905f99",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 900,
+        "y": 900,
+        "wires": [
+            [
+                "75f6952995687872",
+                "7e449ce70649c55b"
+            ]
+        ]
+    },
+    {
+        "id": "75f6952995687872",
+        "type": "influxdb out",
+        "z": "2217c56c.71908a",
+        "influxdb": "e74c84989c7ea029",
+        "name": "Wph passthrough",
+        "measurement": "Wph",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "solgaleo",
+        "bucket": "shelly port 0",
+        "x": 1170,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "7e449ce70649c55b",
+        "type": "debug",
+        "z": "2217c56c.71908a",
+        "name": "Wph Count",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1370,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "dae7188374c13724",
+        "type": "debug",
+        "z": "2217c56c.71908a",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 240,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "54da257d5893aba8",
+        "type": "inject",
+        "z": "2217c56c.71908a",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "off",
+        "payloadType": "str",
+        "x": 90,
+        "y": 1180,
+        "wires": [
+            [
+                "88bed9e9261ace57"
+            ]
+        ]
+    },
+    {
+        "id": "88bed9e9261ace57",
+        "type": "mqtt out",
+        "z": "2217c56c.71908a",
+        "name": "",
+        "topic": "Shelly-Solgaleo/command/switch:0",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "2b7cd95103905f99",
+        "x": 320,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "e2a8e2579504b9db",
+        "type": "inject",
+        "z": "2217c56c.71908a",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "on",
+        "payloadType": "str",
+        "x": 90,
+        "y": 1140,
+        "wires": [
+            [
+                "88bed9e9261ace57"
+            ]
+        ]
+    },
+    {
+        "id": "dfde0453ca38043b",
+        "type": "inject",
+        "z": "2217c56c.71908a",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "off",
+        "payloadType": "str",
+        "x": 90,
+        "y": 1260,
+        "wires": [
+            [
+                "07556933b9054697"
+            ]
+        ]
+    },
+    {
+        "id": "07556933b9054697",
+        "type": "mqtt out",
+        "z": "2217c56c.71908a",
+        "name": "",
+        "topic": "Shelly-Solgaleo/command/switch:1",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "2b7cd95103905f99",
+        "x": 320,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "aada1800a04e72f1",
+        "type": "inject",
+        "z": "2217c56c.71908a",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "on",
+        "payloadType": "str",
+        "x": 90,
+        "y": 1220,
+        "wires": [
+            [
+                "07556933b9054697"
+            ]
+        ]
+    },
+    {
+        "id": "d8a8908eda360aa4",
+        "type": "comment",
+        "z": "2217c56c.71908a",
+        "name": "Controle des switch du Shelly",
+        "info": "",
+        "x": 140,
+        "y": 1100,
+        "wires": []
+    },
+    {
         "id": "bafa5978e1b68521",
         "type": "meross-config",
         "name": "Prise_Solgaleo",
@@ -983,11 +1844,11 @@
         "type": "mqtt-broker",
         "name": "MQTT_RPI",
         "broker": "192.168.1.5",
-        "port": "8883",
+        "port": "1883",
         "tls": "323d7dad7973a90f",
         "clientid": "",
         "autoConnect": true,
-        "usetls": true,
+        "usetls": false,
         "protocolVersion": "4",
         "keepalive": "60",
         "cleansession": true,
